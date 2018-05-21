@@ -48,9 +48,11 @@ client.on("message", message => {
 
    👑!nickname 「لتغير أسم شخص ما」
  
-   👑!muteall 「لقفل الشات」
+   👑تقفيل شات
+ 「لقفل الشات」
  
-   👑!unmuteall 「لفتح الشات」
+   👑فتح شات
+ 「لفتح الشات」
  
    👑اسكت
  「 لاعطاء ميوت لشخص 」
@@ -58,9 +60,11 @@ client.on("message", message => {
    👑تكلم
  「 لفك الميوت」
  
-   👑!mutevoice 「 لاعطاء ميوت صوتي 」
+   👑ميوت صوتي
+ 「 لاعطاء ميوت صوتي 」
  
-   👑!unmutevoice 「لفك ميوت صوتي 」
+   👑تكلم صوتي
+ 「لفك ميوت صوتي 」
  
    👑!deafen 「لأعطاء ديفن」
  
@@ -87,15 +91,20 @@ client.on("message", message => {
  
    👑!delet   「يحذف الـروم سواء صوتي او كتابي」
  
-   👑!role  「لأعطاء رتبة」
+   👑رول
+  「لأعطاء رتبة」
  
-   👑!roleremove  「 أزالة رتبة」
+   👑ازاله رتبه
+  「 لأزاله رتبه من شخص」
  
-   👑!role all  「لأعطاء جميع الي في سيرفر رتبة」
+   👑رول للجميع
+  「لأعطاء جميع الي في سيرفر رتبة」
  
-   👑!role bots  「لأعطاء جميع البوتات رتبة」
+   👑رول للبوتات
+ 「لأعطاء جميع البوتات رتبة」
  
-   👑!role humans   「لأعطاء جميع الناس معدى البوتات رتبة 」
+   👑رول للأشخاص
+   「لأعطاء جميع الناس معدى البوتات رتبة 」
  
    👑طرد
   「لطرد شخص من روم صوتي」
@@ -313,8 +322,8 @@ if(message.content.startsWith(prefix + 'nickname')) {
 }});
 
     client.on('message', message => {
-      var prefix = "!";
-      if(message.content.startsWith(prefix + 'mutevoice')) {
+      var prefix = "م";
+      if(message.content.startsWith(prefix + 'يوت صوتي')) {
         if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ميوت صوتي**:x: ").then(m => m.delete(5000));
         if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I Don't Have `MUTE_MEMBERS` Permission**").then(msg => msg.delete(6000))
          
@@ -332,8 +341,8 @@ if(message.content.startsWith(prefix + 'nickname')) {
     }
   });
   client.on('message', message => {
-    var prefix = "!";
-    if(message.content.startsWith(prefix + 'unmutevoice')) {
+    var prefix = "ت";
+    if(message.content.startsWith(prefix + 'كلم صوتي')) {
       if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**ليس لديك صلاحية لاعطاء ميوت صوتي**:x: ").then(m => m.delete(5000));
       if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I Don't Have `MUTE_MEMBERS` Permission**").then(msg => msg.delete(6000))
        
@@ -419,12 +428,12 @@ client.on("message", message => {
 });
 
 client.on("message", message => {
-    var prefix = "!";
+    var prefix = "ر";
     var args = message.content.split(' ').slice(1); 
     var msg = message.content.toLowerCase();
     if( !message.guild ) return;
-    if( !msg.startsWith( prefix + 'role' ) ) return;
-    if( msg.toLowerCase().startsWith( prefix + 'roleremove' ) ){
+    if( !msg.startsWith( prefix + 'ول' ) ) return;
+    if( msg.toLowerCase().startsWith('ازاله رتبه')) {
  if (!message.member.hasPermission("ADMINISTRATOR"))  return message.reply("**للأسف ليس لديك صلاحية `ADMINISTRATOR`**").then(msg => msg.delete(5000));
 if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("**I Don't Have `ADMINISTRATOR` Permission**").then(msg => msg.delete(6000));
         if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
@@ -435,13 +444,13 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
             message.mentions.members.first().removeRole( role1 );
             return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
         }
-        if( args[0].toLowerCase() == "all" ){
+        if( args[0].toLowerCase() == "للجميع" ){
             message.guild.members.forEach(m=>m.removeRole( role1 ))
             return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
-        } else if( args[0].toLowerCase() == "bots" ){
+        } else if( args[0].toLowerCase() == "للبوتات" ){
             message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
             return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
-        } else if( args[0].toLowerCase() == "humans" ){
+        } else if( args[0].toLowerCase() == "للأشخاص" ){
             message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
             return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
         }   
@@ -454,13 +463,13 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
             message.mentions.members.first().addRole( role1 );
             return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
         }
-        if( args[0].toLowerCase() == "all" ){
+        if( args[0].toLowerCase() == "للجميع" ){
             message.guild.members.forEach(m=>m.addRole( role1 ))
             return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
-        } else if( args[0].toLowerCase() == "bots" ){
+        } else if( args[0].toLowerCase() == "للبوتات" ){
             message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
             return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
-        } else if( args[0].toLowerCase() == "humans" ){
+        } else if( args[0].toLowerCase() == "للأشخاص" ){
             message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
             return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
         } 
@@ -666,35 +675,41 @@ client.on("message", message => {
         }
         });
 
-        client.on('message', message => {
-                     var prefix = "!";
-            if(message.content === prefix + "muteall") {
-                                if(!message.channel.guild) return message.reply('** This command only for servers**');
-      
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
-                   message.channel.overwritePermissions(message.guild.id, {
-                 SEND_MESSAGES: false
-      
-                   }).then(() => {
-                       message.reply("**__تم تقفيل الشات__ :white_check_mark: **")
-                   });
-                     }
-     
-         if(message.content === prefix + "unmuteall") {
-                             if(!message.channel.guild) return message.reply('** This command only for servers**');
-      
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
-                   message.channel.overwritePermissions(message.guild.id, {
-                 SEND_MESSAGES: true
-      
-                   }).then(() => {
-                       message.reply("**__تم فتح الشات__:white_check_mark:**")
-                   });
-                     }
-                      
-               
-             
-     });
+client.on('message', message => {
+  var prefix = "ت";
+if(message.content === prefix + "قفيل شات") {
+             if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
+message.channel.overwritePermissions(message.guild.id, {
+SEND_MESSAGES: false
+
+}).then(() => {
+    message.reply("**__تم تقفيل الشات__ :white_check_mark: **")
+
+});
+}
+   
+
+
+});
+  client.on('message', message => {
+    var prefix = "ف";
+if(message.content === prefix + "تح شات") {
+          if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
+message.channel.overwritePermissions(message.guild.id, {
+SEND_MESSAGES: true
+
+}).then(() => {
+    message.reply("**__تم فتح الشات__:white_check_mark:**")
+});
+  }
+   
+
+
+});
 
           client.on("message", (message) => {
             if (message.content.startsWith('!delet')) {
