@@ -448,7 +448,7 @@ client.on("message", message => {
     var msg = message.content.toLowerCase();
     if( !message.guild ) return;
     if( !msg.startsWith( prefix + 'ول' ) ) return;
-    if( msg.toLowerCase().startsWith('ازاله') ){
+    if( msg.toLowerCase().startsWith( prefix + 'ول مسح' ) ){
  if (!message.member.hasPermission("ADMINISTRATOR"))  return message.reply("**للأسف ليس لديك صلاحية `ADMINISTRATOR`**").then(msg => msg.delete(5000));
 if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("**I Don't Have `ADMINISTRATOR` Permission**").then(msg => msg.delete(6000));
         if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
