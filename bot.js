@@ -203,30 +203,31 @@ client.on('message', message => {
     
      });
 
-	 client.on("message", message => {
-		var prefix = "ا";
-				var args = message.content.substring(prefix.length).split(" ");
-				if (message.content.startsWith(prefix +"مسح")) {
-					if (!message.member.hasPermission("MANAGE_CHANNELS")) 
-	if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**للأسف البوت يحتاج صلاحية`MANAGE_CHANNELS`**");
-	 if (!args[1]) {
-									let embed3 = new Discord.RichEmbed()
-									.setDescription("امسح <number>")
-									.setColor("RANDOM")
-									message.channel.sendEmbed(embed3);
-								} else {
-								let messagecount = parseInt(args[1]);
-								message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-															  message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-								message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-								let embed4 = new Discord.RichEmbed()
-																.setColor("#008000")
-								  .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
-																							message.delete("3000");
-									message.channel.sendEmbed(embed4) .then(msg => msg.delete(3000));
-								}
-							  }
-	}); 
+client.on("message", message => {
+    var prefix = "ا";
+            var args = message.content.substring(prefix.length).split(" ");
+            if (message.content.startsWith(prefix +"مسح")) {
+                if (!message.member.hasPermission("MANAGE_CHANNELS"))  return message.reply("**للأسف ليس لديك صلاحية `MANAGE_CHANNELS` Permission**");
+if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**للأسف البوت يحتاج صلاحية`MANAGE_CHANNELS`**");
+ if (!args[1]) {
+                                let embed3 = new Discord.RichEmbed()
+                                .setDescription("امسح <number>")
+                                .setColor("RANDOM")
+                                message.channel.sendEmbed(embed3);
+                            } else {
+                            let messagecount = parseInt(args[1]);
+                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                                                          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
+                            let embed4 = new Discord.RichEmbed()
+                                                            .setColor("#008000")
+                              .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
+                                                                                        message.delete("3000");
+                                message.channel.sendEmbed(embed4) .then(msg => msg.delete(3000));
+                            }
+                          }
+});  
+
 
 client.on('message', async message =>{
   var prefix = "ا";
@@ -740,7 +741,7 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return m
              
                                                   });
    client.on("message", message => {
-       var prefix = "#";
+       var prefix = "*^%";
   
              var args = message.content.substring(prefix.length).split(" ");
                 if (message.content.startsWith(prefix + "ظظظظظ")) {
