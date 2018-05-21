@@ -46,7 +46,8 @@ client.on("message", message => {
  
    👑!rolebc 「لأرسال برودكاست لرتبة معينه」
 
-   👑!nickname 「لتغير أسم شخص ما」
+   👑اسم
+ 「لتغير أسم شخص ما」
  
    👑تقفيل شات
  「لقفل الشات」
@@ -66,9 +67,11 @@ client.on("message", message => {
    👑تكلم صوتي
  「لفك ميوت صوتي 」
  
-   👑!deafen 「لأعطاء ديفن」
+   👑دفن صوتي
+ 「لأعطاء ديفن」
  
-   👑!undeafen 「لفك الديفن」
+   👑فك دفن
+ 「لفك الديفن」
  
    👑!createcolors 「لعمل 137 لون مرتب」
  
@@ -109,7 +112,8 @@ client.on("message", message => {
    👑طرد
   「لطرد شخص من روم صوتي」
  
-   👑!move  「لسحب الشخص الى الروم صوتي الخاص بك」
+   👑سحب
+  「لسحب الشخص الى الروم صوتي الخاص بك」
  
 ══════════ஜ۩۞۩ஜ════════════  
 
@@ -305,9 +309,9 @@ if(command === `كلم`) {
 });
 
 client.on("message",  message => {
-  var prefix = "!";
+  var prefix = "ا";
   let args = message.content.split(' ').slice(1);
-if(message.content.startsWith(prefix + 'nickname')) {
+if(message.content.startsWith(prefix + 'سم')) {
  if (!message.member.hasPermission("MANAGE_NICKNAMES")) {
      message.channel.send("ضع الاسم")
  } else {
@@ -363,8 +367,8 @@ if(message.content.startsWith(prefix + 'nickname')) {
 
     client.on('message', message => {
         if(!message.channel.guild) return;
-        var prefix = "!";
-    if(message.content.startsWith(prefix + 'move')) {
+        var prefix = "س";
+    if(message.content.startsWith(prefix + 'حب')) {
         var cmdrole = message.guild.roles.find("name", config.cmdrole)
            if (message.member.hasPermission("MOVE_MEMBERS")) {
 if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**I Don't Have `MOVE_MEMBERS` Permission**").then(msg => msg.delete(6000))
@@ -521,8 +525,8 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
     });
  
     client.on('message', message => {
-      var prefix = "!";
-      if(message.content.startsWith(prefix + 'deafen')) {
+      var prefix = "د";
+      if(message.content.startsWith(prefix + 'فن صوتي')) {
     if (message.mentions.users.size === 0 && message.mentions.roles.size === 0) {
       return message.reply('**يجب عليك المنشن اولاّ**:x:').catch(console.error);
     }
@@ -544,8 +548,8 @@ if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return mes
   });  
    
   client.on('message', async message =>{
-    var prefix = "!";
-    if(message.content.startsWith(prefix + 'undeafen')) {
+    var prefix = "ف";
+    if(message.content.startsWith(prefix + 'ك دفن')) {
    
   if (message.mentions.users.size === 0 && message.mentions.roles.size === 0) {
     return message.reply('**يجب عليك المنشن اولاّ**:x:').catch(console.error);
