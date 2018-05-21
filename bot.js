@@ -97,7 +97,7 @@ client.on("message", message => {
    👑رول
   「لأعطاء رتبة」
  
-   👑ازاله رتبه
+   👑ازاله
   「 لأزاله رتبه من شخص」
  
    👑رول للجميع
@@ -203,30 +203,40 @@ client.on('message', message => {
     
      });
 
-client.on("message", message => {
-    var prefix = "ا";
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix +"مسح")) {
-                if (!message.member.hasPermission("MANAGE_CHANNELS"))  return message.reply("**للأسف ليس لديك صلاحية `MANAGE_CHANNELS` Permission**");
-if(!message.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return message.reply("**للأسف البوت يحتاج صلاحية`MANAGE_CHANNELS`**");
- if (!args[1]) {
-                                let embed3 = new Discord.RichEmbed()
-                                .setDescription("امسح <number>")
-                                .setColor("RANDOM")
-                                message.channel.sendEmbed(embed3);
-                            } else {
-                            let messagecount = parseInt(args[1]);
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                                                          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            let embed4 = new Discord.RichEmbed()
-                                                            .setColor("#008000")
-                              .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
-                                                                                        message.delete("3000");
-                                message.channel.sendEmbed(embed4) .then(msg => msg.delete(3000));
-                            }
-                          }
-});  
+client.on('message', message =>{
+  var prefix = "ا";
+    if(message.author.bot) return;
+    if(!message.content == (prefix+'مسح'))
+if(!true) return;
+    if(message.content.split(' ')[0] == (prefix+'مسح')){
+    var lmt = message.content.split(' ')[1]
+    ,  hang = 0
+    ,  max  = 0;
+    
+    if(!lmt) lmt = 200;
+    if(typeof lmt !== 'number') return;
+    if(lmt > 100){
+        for(;lmt > 100;){
+        lmt--;
+        hang++;
+        }
+        }
+     message.channel.fetchMessages({limite:lmt}).then(msgs=>{
+     msgs.channel.bulkDelete(msgs);
+     });
+     if(hang > 100){
+         hang = 100;
+     }
+        message.channel.fetchMessages({limite:hang}).then(msgs=>{
+        message.channel.bulkDelete(msgs);
+     });
+     
+    max= hang+lmt;
+    message.reply(` **Done, i have delete ${max} messages!**.`).catch(()=>{
+        message.reply(` **Sorry, i can only bulk delete messages that are under 14 days old**.`)
+    });
+    }
+}); 
 
 
 client.on('message', async message =>{
@@ -235,14 +245,14 @@ if (message.author.omar) return;
 if (!message.content.startsWith(prefix)) return;
 if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
 if(!message.member.hasPermission('MANAGE_ROLES'));
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
+if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return;
 var command = message.content.split(" ")[0];
 command = command.slice(prefix.length);
 var args = message.content.split(" ").slice(1);
 	if(command == "سكت") {
     let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!tomute) return message.reply("**يجب عليك المنشن اولاّ**:x: ") .then(m => m.delete(5000));
-    if(tomute.hasPermission("MANAGE_MESSAGES"))return      message.channel.send('**للأسف لا أمتلك صلاحية** `MANAGE_MASSAGEES`');
+    if(tomute.hasPermission("MANAGE_MESSAGES"))return;
     let muterole = message.guild.roles.find(`name`, "muted");
     //start of create role
     if(!muterole){
@@ -438,7 +448,7 @@ client.on("message", message => {
     var msg = message.content.toLowerCase();
     if( !message.guild ) return;
     if( !msg.startsWith( prefix + 'ول' ) ) return;
-    if( msg.toLowerCase().startsWith('ازاله رتبه')) {
+    if( msg.toLowerCase().startsWith('ازاله') ){
  if (!message.member.hasPermission("ADMINISTRATOR"))  return message.reply("**للأسف ليس لديك صلاحية `ADMINISTRATOR`**").then(msg => msg.delete(5000));
 if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("**I Don't Have `ADMINISTRATOR` Permission**").then(msg => msg.delete(6000));
         if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
