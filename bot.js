@@ -81,9 +81,7 @@ client.on("guildMemberAdd", (member) => {
                 if (dat[Inv] < Invite.uses) {
                     console.log(3);
                     console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
- channel.send(` :hearts: **تم دعوته من قبل ${Invite.inviter} :hearts: 
-:hearts: رابط الدعوه --> https://discord.gg/${Invite.code} :hearts:
-:hearts: عضو رقم --> ${member.guild.memberCount} :hearts: **`)            
+ channel.send(`تم دعوته من قبل  ${Invite.inviter}`)            
  }
             dat[Inv] = Invite.uses;
         })
