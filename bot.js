@@ -6,6 +6,7 @@ const request = require('request');
 const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
 const fs = require('fs');
+const client = new Discord.Client({ fetchAllMembers: true });
 const moment = require('moment');
 
 
