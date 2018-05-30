@@ -255,19 +255,6 @@ client.on("message", message => {
    }
    }); 
 
-client.on('message', message => {
-  let filter = ["كس", "كسمك", "شرموطه", "شرموطة", "قحبة", "قحبه", "كسختك", "اختك", "امك", "زب", "زبي", "عير","ايري","منيوك","منيكة","منيكه","عرص","عرصة","عرصه","ابن الزنوه"];
-  if(filter.some(function(v) { 
-      return message.content.indexOf(v) >= 0; 
-  })) {
-      message.delete();
-const embed = new Discord.RichEmbed()
-.setColor(0xfffff)
-.addField(`${message.author.username}`,
-'الفاظك (:')
- message.channel.send({embed}).then(message => message.delete(1000));
-  };
-});
 
 client.on("message", async message => {
 
